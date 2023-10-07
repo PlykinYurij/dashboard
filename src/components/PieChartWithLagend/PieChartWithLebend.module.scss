@@ -1,0 +1,42 @@
+@import "src/styles/adaptiveFont";
+.wrapperPieChartWithLegend {
+  position: relative;
+  cursor: pointer;
+}
+.containerPieChartWithLegend {
+  width: 250px;
+}
+.containerContentInScheme {
+  position: absolute;
+  top: 90px;
+  left: 80px;
+  text-align: center;
+  .title {
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .value {
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ee604a 50%, #f48744);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #0B2349;
+  }
+}
+.containerLegend {
+  display: flex;
+  justify-content: space-between;
+  @include adaptive-font(18, 15);
+  font-weight: 500;
+  margin: 3px 0;
+  div {
+    border-bottom: 2px solid #fff;
+  }
+  &.hover {
+    div {
+      color: #b782cc;
+      border-bottom: 2px solid #b782cc;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.containerHeader {
+  width: 100%;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 0 9px grey;
+  padding: 10px 10px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.containerButton {
+  width: 20%;
+  max-width: 100px;
+}
