@@ -3,10 +3,14 @@ import {GET_DASHBOARD} from '../../apollo/appRequests.ts'
 import Loader from '../../components/Loader/Loader.tsx'
 import ErrorResponse from '../../components/ErrorResponse/ErrorResponse.tsx'
 import PieChartWithLegend from '../../components/PieChartWithLagend/PieChartWithLegend.tsx'
-import {IDashboard} from '../../types/types.ts'
 import {useState} from 'react'
 import classes from './Dashboard.module.scss'
 
+interface IDashboard {
+    active: number,
+    inactive: number,
+    completed: number,
+}
 interface IActualData extends IDashboard {
     title: string
 }
@@ -26,6 +30,7 @@ const Dashboard = () => {
 
     return (
         <div className={classes.wrapperDashboard}>
+            <div className={classes.titlePage}>Сводка</div>
             {loading && <Loader />}
             {error && <ErrorResponse message={error.message}/>}
             <div className={classes.containerPies}>

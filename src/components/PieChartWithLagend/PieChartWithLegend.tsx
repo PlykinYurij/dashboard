@@ -20,20 +20,26 @@ const PieChartWithLegend: FC<IPieChart> = ({title, active, noActive, completed})
         setActiveHover(null)
     }
 
-    const onClickComponent = () => {
-        setFocusComponent((prevState) => !prevState)
+    const onMouseOverTotal = () => {
+        setFocusComponent(true)
+    }
+    const onMouseOutTotal = () => {
+        setFocusComponent(false)
+    }
+
+    const checkActiveSector = (index: number): boolean => {
+        return focusComponent || activeHover === index
     }
 
     const totalCount = active + noActive + completed
     const dataPie = [
-        {title: 'Активных', value: active, color: focusComponent ? '#f9a752' : '#b9b1c0'},
-        {title: 'Неактивных', value: noActive, color: focusComponent ? '#fccf82' : '#d0cbd6'},
-        {title: 'Завершенных', value: completed, color: '#f2f0f5'}
+        {title: 'Активных', value: active, color: checkActiveSector(0) ? '#f9a752' : '#b9b1c0'},
+        {title: 'Неактивных', value: noActive, color: checkActiveSector(1) ? '#fccf82' : '#d0cbd6'},
+        {title: 'Завершенных', value: completed, color: checkActiveSector(2) ? '#fef4a8' : '#f2f0f5'}
     ]
     return (
         <div
             className={classes.wrapperPieChartWithLegend}
-            onClick={onClickComponent}
         >
             <div className={classes.containerPieChartWithLegend}>
                 <PieChart data={dataPie}
@@ -51,7 +57,14 @@ const PieChartWithLegend: FC<IPieChart> = ({title, active, noActive, completed})
                 </div>
             </div>
             <div>
-                <LegendPie title={'Всего'} value={totalCount} isActive={false}/>
+                <div onMouseOut={onMouseOutTotal} onMouseOver={onMouseOverTotal}>
+                    <LegendPie
+                        title={'Всего'}
+                        value={totalCount}
+                        isActive={false}
+
+                    />
+                </div>
                 {dataPie.map((legend, index) => {
                     return <div
                         key={legend.title}

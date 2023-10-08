@@ -1,8 +1,17 @@
+@import "src/styles/adaptiveFont";
 .wrapperDashboard {
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 10px;
+}
+.titlePage {
+  @include adaptive-font(35, 30);
+  margin: 10px 0 50px 0;
+  color: #b9b1c0;
+  width: 100%;
+  max-width: 1000px;
 }
 .containerPies {
   width: 100%;
